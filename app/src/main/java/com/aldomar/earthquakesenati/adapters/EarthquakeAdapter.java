@@ -1,20 +1,20 @@
 package com.aldomar.earthquakesenati.adapters;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import com.aldomar.earthquakesenati.R;
 import com.aldomar.earthquakesenati.databinding.ListItemBinding;
 import com.aldomar.earthquakesenati.models.Earthquake;
 import com.aldomar.earthquakesenati.viewholders.EarthquakeViewHolder;
+import com.aldomar.earthquakesenati.viewholders.OnItemClickListener;
 
 public class EarthquakeAdapter extends ListAdapter<Earthquake, EarthquakeViewHolder> {
 
+    private OnItemClickListener onItemClickListener;
 
     public static final DiffUtil.ItemCallback<Earthquake> DIFF_CALLBACK = new DiffUtil.ItemCallback<Earthquake>() {
         @Override
@@ -42,7 +42,11 @@ public class EarthquakeAdapter extends ListAdapter<Earthquake, EarthquakeViewHol
     @Override
     public void onBindViewHolder(@NonNull EarthquakeViewHolder holder, int position) {
         Earthquake earthquake = getItem(position);
-        holder.bind(earthquake);
+        holder.bind(earthquake, onItemClickListener);
 
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 }

@@ -1,12 +1,7 @@
 package com.aldomar.earthquakesenati.viewholders;
 
-import android.view.View;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.aldomar.earthquakesenati.R;
 import com.aldomar.earthquakesenati.databinding.ListItemBinding;
 import com.aldomar.earthquakesenati.models.Earthquake;
 
@@ -19,9 +14,12 @@ public class EarthquakeViewHolder extends RecyclerView.ViewHolder {
         this.binding = binding;
     }
 
-    public void bind(Earthquake earthquake) {
+    public void bind(Earthquake earthquake, OnItemClickListener onItemClickListener) {
         binding.textViewMagnitude.setText(String.valueOf(earthquake.getMagnitude()));
         binding.textViewPlace.setText(earthquake.getPlace());
+        binding.getRoot().setOnClickListener(v -> {
+            onItemClickListener.onItemClick(earthquake);
+        });
         binding.executePendingBindings();
     }
 }

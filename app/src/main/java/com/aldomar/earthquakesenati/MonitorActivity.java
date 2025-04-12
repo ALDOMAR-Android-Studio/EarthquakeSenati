@@ -1,7 +1,7 @@
 package com.aldomar.earthquakesenati;
 
-import android.app.Instrumentation;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,6 +43,7 @@ public class MonitorActivity extends AppCompatActivity {
         earthquakes.add(new Earthquake("5", "Oregon", 3.5, 1633382400000L, 43.8041, -120.5542));
 
         EarthquakeAdapter adapter = new EarthquakeAdapter();
+        adapter.setOnItemClickListener(earthquake -> Toast.makeText(MonitorActivity.this, "Clicked: " + earthquake.getPlace(), Toast.LENGTH_SHORT).show());
         binding.recyclerView.setAdapter(adapter);
         adapter.submitList(earthquakes);
 
