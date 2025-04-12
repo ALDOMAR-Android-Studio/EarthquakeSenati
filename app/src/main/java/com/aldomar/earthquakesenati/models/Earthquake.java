@@ -1,5 +1,7 @@
 package com.aldomar.earthquakesenati.models;
 
+import androidx.annotation.Nullable;
+
 public class Earthquake {
     private String id;
     private String place;
@@ -63,5 +65,15 @@ public class Earthquake {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        return super.equals(obj);
     }
 }

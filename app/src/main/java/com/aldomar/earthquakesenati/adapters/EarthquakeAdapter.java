@@ -1,34 +1,48 @@
 package com.aldomar.earthquakesenati.adapters;
 
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.AsyncDifferConfig;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
+import com.aldomar.earthquakesenati.R;
 import com.aldomar.earthquakesenati.models.Earthquake;
 import com.aldomar.earthquakesenati.viewholders.EarthquakeViewHolder;
 
 public class EarthquakeAdapter extends ListAdapter<Earthquake, EarthquakeViewHolder> {
 
 
-    protected EarthquakeAdapter(@NonNull DiffUtil.ItemCallback<Earthquake> diffCallback) {
-        super(diffCallback);
-    }
+    public static final DiffUtil.ItemCallback<Earthquake> DIFF_CALLBACK = new DiffUtil.ItemCallback<Earthquake>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Earthquake oldItem, @NonNull Earthquake newItem) {
+            return oldItem.getId().equals(newItem.getId());
+        }
 
-    protected EarthquakeAdapter(@NonNull AsyncDifferConfig<Earthquake> config) {
-        super(config);
+        @Override
+        public boolean areContentsTheSame(@NonNull Earthquake oldItem, @NonNull Earthquake newItem) {
+            return oldItem.equals(newItem);
+        }
+    };
+
+    public EarthquakeAdapter() {
+        super(DIFF_CALLBACK);
     }
 
     @NonNull
     @Override
     public EarthquakeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.list_item, parent, false);
+        return new EarthquakeViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull EarthquakeViewHolder holder, int position) {
+        Earthquake earthquake = getItem(position);
+        holder.bind(earthquake);
 
     }
 }

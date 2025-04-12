@@ -6,6 +6,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.aldomar.earthquakesenati.R;
 import com.aldomar.earthquakesenati.models.Earthquake;
 
 public class EarthquakeViewHolder extends RecyclerView.ViewHolder {
@@ -13,10 +14,10 @@ public class EarthquakeViewHolder extends RecyclerView.ViewHolder {
     private TextView magnitudeTextView;
     private TextView placeTextView;
 
-    public EarthquakeViewHolder(@NonNull View itemView, TextView magnitudeTextView, TextView placeTextView) {
+    public EarthquakeViewHolder(@NonNull View itemView) {
         super(itemView);
-        this.magnitudeTextView = magnitudeTextView;
-        this.placeTextView = placeTextView;
+        this.magnitudeTextView = itemView.findViewById(R.id.textViewMagnitude);
+        this.placeTextView = itemView.findViewById(R.id.textViewPlace);
     }
 
     public void bind(Earthquake earthquake) {

@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.aldomar.earthquakesenati.adapters.EarthquakeAdapter;
 import com.aldomar.earthquakesenati.databinding.ActivityMonitorBinding;
 import com.aldomar.earthquakesenati.models.Earthquake;
 
@@ -40,6 +41,10 @@ public class MonitorActivity extends AppCompatActivity {
         earthquakes.add(new Earthquake("3", "Alaska", 5.0, 1633209600000L, 61.3707, -152.4044));
         earthquakes.add(new Earthquake("4", "Hawaii", 4.2, 1633296000000L, 20.7967, -156.3319));
         earthquakes.add(new Earthquake("5", "Oregon", 3.5, 1633382400000L, 43.8041, -120.5542));
+
+        EarthquakeAdapter adapter = new EarthquakeAdapter();
+        binding.recyclerView.setAdapter(adapter);
+        adapter.submitList(earthquakes);
 
     }
 }
