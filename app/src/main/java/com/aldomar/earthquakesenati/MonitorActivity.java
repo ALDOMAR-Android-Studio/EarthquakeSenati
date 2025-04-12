@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.aldomar.earthquakesenati.adapters.EarthquakeAdapter;
+import com.aldomar.earthquakesenati.apis.EarthquateApiClient;
 import com.aldomar.earthquakesenati.databinding.ActivityMonitorBinding;
 import com.aldomar.earthquakesenati.models.Earthquake;
 
@@ -55,6 +56,13 @@ public class MonitorActivity extends AppCompatActivity {
             binding.emptyView.setVisibility(View.GONE);
             Toast.makeText(this, "Existen datos", Toast.LENGTH_SHORT).show();
         }
+
+        EarthquateApiClient.getInstance().getService().getEarthquakes();
+
+
+        // TODO - Obtener data (terremotos) del servicio externo mediante Retrofit
+        // TODO - Convertir data de JSON a String (ObjectJson) / JSON a Objeto (Moshi)
+        // TODO - Mostrar la data en el RecyclerView
 
     }
 }
