@@ -1,6 +1,7 @@
 package com.aldomar.earthquakesenati;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -46,6 +47,14 @@ public class MonitorActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(earthquake -> Toast.makeText(MonitorActivity.this, "Clicked: " + earthquake.getPlace(), Toast.LENGTH_SHORT).show());
         binding.recyclerView.setAdapter(adapter);
         adapter.submitList(earthquakes);
+
+        if(earthquakes.isEmpty()){
+            binding.emptyView.setVisibility(View.VISIBLE);
+            Toast.makeText(this, "No existen datos", Toast.LENGTH_SHORT).show();
+        } else {
+            binding.emptyView.setVisibility(View.GONE);
+            Toast.makeText(this, "Existen datos", Toast.LENGTH_SHORT).show();
+        }
 
     }
 }
