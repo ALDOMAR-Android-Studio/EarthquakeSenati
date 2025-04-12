@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import com.aldomar.earthquakesenati.R;
+import com.aldomar.earthquakesenati.databinding.ListItemBinding;
 import com.aldomar.earthquakesenati.models.Earthquake;
 import com.aldomar.earthquakesenati.viewholders.EarthquakeViewHolder;
 
@@ -34,9 +35,8 @@ public class EarthquakeAdapter extends ListAdapter<Earthquake, EarthquakeViewHol
     @NonNull
     @Override
     public EarthquakeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.list_item, parent, false);
-        return new EarthquakeViewHolder(view);
+        ListItemBinding binding = ListItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new EarthquakeViewHolder(binding);
     }
 
     @Override
